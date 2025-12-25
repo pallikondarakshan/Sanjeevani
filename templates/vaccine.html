@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ImmunoShield</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6f9;
+      color: #333;
+    }
+
+    header {
+      background: #007bff;
+      color: white;
+      padding: 40px 20px;
+      position: relative;
+    }
+    .card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-bottom: 1px solid #ddd;
+}
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    .header-content p {
+      font-size: 1.1rem;
+      max-width: 700px;
+    }
+
+    .why-card {
+      background: white;
+      color: #333;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 300px;
+      position: absolute;
+      top: 80px;
+      right: 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .why-card h3 {
+      margin-bottom: 12px;
+      color: #007bff;
+    }
+
+    .why-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .why-card li::before {
+      content: "✔";
+      color: #10b981;
+      margin-right: 8px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 60px auto 20px auto;
+      padding: 0 20px;
+    }
+
+    .vaccine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card img {
+      width: 100%;
+      height: 50%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px;
+    }
+
+    .card-body h2 {
+      font-size: 18px;
+      margin-bottom: 4px;
+      color: #2c3e50;
+    }
+
+    .card-body small {
+      color: #007bff;
+      font-style: italic;
+    }
+
+    .info {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .info span {
+      display: block;
+      margin: 3px 0;
+    }
+
+    .info strong {
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>🛡️ ImmunoShield</h1>
+      <h4>Comprehensive Vaccine Information Portal</h4>
+      <p>Explore detailed information about essential vaccines available in India. Learn about dosages, age requirements, side effects, and the diseases they prevent.</p>
+    </div>
+    <div class="why-card">
+      
+      <h3>Why Vaccination Matters</h3>
+      <ul>
+        <li>Prevents millions of deaths annually</li>
+        <li>Strengthens community immunity</li>
+        <li>Reduces long-term health costs</li>
+        <li>Protects vital organs from damage</li>
+      </ul>
+    </div>
+  </header>
+  <div class="container">
+    <div style="height: 40px;"></div> 
+    <div class="vaccine-grid" id="vaccineGrid"></div>
+  </div>
+  <div class="container">
+    <div class="vaccine-grid" id="vaccineGrid"></div>
+  </div>
+
+  <script>
+  
+    const vaccines = [
+      {
+        name: "BCG",
+        subtitle: "Bacillus Calmette–Guérin",
+        organImage: "https://www.ersnet.org/wp-content/uploads/2020/12/preview-27.jpeg",
+        doses: "1",
+        age: "At birth or up to 1 year",
+        prevents: "Tuberculosis",
+        sideEffects: "Sore at injection site, mild fever"
+      },
+      {
+  name: "Hepatitis A",
+  subtitle: "Hepatitis A Vaccine",
+  organImage: "https://www.medstarhealth.org/-/media/project/mho/medstar/blogs/blogmedstar2021/thomas-liver-disease-desktop.jpg",
+  doses: "2",
+  age: "12 months and older",
+  prevents: "Hepatitis A (liver infection)",
+  sideEffects: "Soreness, fatigue, mild nausea"
+},
+      {
+        name: "Hepatitis B",
+        subtitle: "Hepatitis B Vaccine",
+        organImage: "https://t3.ftcdn.net/jpg/01/58/81/06/360_F_158810653_b9l09dqm5TJ6KTU0cTSYfwtsTqb3UoYv.jpg",
+        doses: "4",
+        age: "Birth, 6, 10, 14 weeks",
+        prevents: "Liver infection",
+        sideEffects: "Pain, fatigue, headache"
+      },
+      {
+        name: "OPV",
+        subtitle: "Oral Polio Vaccine",
+        organImage: "https://hips.hearstapps.com/hmg-prod/images/polio-viruses-illustration-royalty-free-illustration-1655994236.jpg?crop=1.00xw:0.700xh;0,0.161xh&resize=1200:*",
+        doses: "5",
+        age: "Birth to 14 weeks & boosters",
+        prevents: "Polio",
+        sideEffects: "Mild digestive upset"
+      },
+      {
+  name: "IPV",
+  subtitle: "Inactivated Polio Vaccine",
+  organImage: "https://neurological.org.nz/assets/Uploads/Glossary/5a62c06602/Central-Nervous-System-website__ResizedImageWzk4OSw1NjVd.png",
+  doses: "2–3 primary + booster",
+  age: "6, 10, 14 weeks (as per schedule)",
+  prevents: "Polio (injectable form)",
+  sideEffects: "Redness or swelling at injection site, mild fever"
+},
+{
+  name: "DPT",
+  subtitle: "Diphtheria, Pertussis, Tetanus Vaccine",
+  organImage: "	https://www.shutterstock.com/image-vector/humen-muscles-anatomy-human-shoulder-260nw-2464366577.jpg",
+  doses: "3 primary + boosters",
+  age: "6, 10, 14 weeks and boosters at 16–24 months, 5–6 years",
+  prevents: "Diphtheria, Whooping Cough, Tetanus",
+  sideEffects: "Pain/swelling at injection site, fever, irritability"
+},
+{
+  name: "Hib",
+  subtitle: "Haemophilus Influenzae type B Vaccine",
+  organImage: "https://i.natgeofe.com/k/715d847d-ea41-48a3-b3e4-fbaf067a7e7e/brain_4x3.jpg",
+  doses: "3",
+  age: "6, 10, 14 weeks",
+  prevents: "Meningitis, Pneumonia (caused by Hib bacteria)",
+  sideEffects: "Redness, fever, fussiness"
+},
+{
+  name: "TT",
+  subtitle: "Tetanus Toxoid Vaccine",
+  organImage: "https://www.shutterstock.com/image-illustration/3d-rendering-muscular-human-body-600nw-1480304072.jpg",
+  doses: "2 during pregnancy",
+  age: "For pregnant women",
+  prevents: "Tetanus in mother and newborn",
+  sideEffects: "Mild fever, soreness, fatigue"
+},
+{
+  name: "COVID-19",
+  subtitle: "COVID-19 Vaccine",
+  organImage: "https://cdn.who.int/media/images/default-source/mca/mca-covid-19/coronavirus-2.tmb-1920v.jpg",
+  doses: "2 + booster (varies by brand)",
+  age: "As per availability and government guidelines",
+  prevents: "COVID-19 (Coronavirus disease)",
+  sideEffects: "Fever, headache, fatigue, injection site pain"
+},
+{
+  name: "Rotavirus",
+  subtitle: "Rotavirus Oral Vaccine",
+  organImage: "https://t4.ftcdn.net/jpg/00/52/88/39/360_F_52883956_BXTS2bBhXofmt3Q4g7iYeOBvwProi3ik.jpg",
+  doses: "2–3 (depending on brand)",
+  age: "6, 10, 14 weeks",
+  prevents: "Severe diarrhea in infants",
+  sideEffects: "Irritability, mild diarrhea, vomiting"
+},
+{
+  name: "Dengue",
+  subtitle: "Dengue Vaccine (TAK-003/Dengvaxia)",
+  organImage: "https://posture-works.com/wp-content/uploads/2022/03/shutterstock_1756606142.jpg",
+  doses: "3",
+  age: "9 to 16 years (TAK-003), 9-45 years (Dengvaxia, if seropositive)",
+  prevents: "Dengue fever",
+  sideEffects: "Injection site pain, headache, fatigue"
+},
+  {
+    name: "Malaria Vaccine",
+    subtitle: "RTS,S/AS01 (Mosquirix)",
+    organImage: "https://img.freepik.com/premium-photo/red-blood-cell-with-blue-background_693425-10658.jpg",
+    doses: "4 (starting at 5 months)",
+    age: "Infants/children in high-risk African regions",
+    prevents: "Plasmodium falciparum malaria",
+    sideEffects: "Fever, irritability, swelling"
+  },
+  {
+    name: "Ebola Vaccine",
+    subtitle: "rVSV-ZEBOV",
+    organImage: "https://www.shutterstock.com/shutterstock/videos/3756003363/thumb/1.jpg?ip=x480",
+    doses: "1–2 (depends on outbreak context)",
+    age: "Adults in outbreak settings or healthcare workers",
+    prevents: "Ebola virus disease (high mortality)",
+    sideEffects: "Fever, joint pain, temporary fatigue"
+  },
+
+{
+  name: "PCV",
+  subtitle: "Pneumococcal Conjugate Vaccine",
+  organImage: "https://cdn.mos.cms.futurecdn.net/Bxr5rYnBKvRaJsLana3fKc.jpg",
+  doses: "3 (2 primary + 1 booster)",
+  age: "6, 14 weeks + booster at 9 months",
+  prevents: "Pneumonia, meningitis, sepsis (from pneumococcus)",
+  sideEffects: "Fever, loss of appetite, irritability"
+},
+{
+  name: "MR",
+  subtitle: "Measles and Rubella Vaccine",
+  organImage: "https://d1g9yur4m4naub.cloudfront.net/images/Article_Images/ImageForArticle_902_165968887991999.jpg",
+  doses: "2",
+  age: "9 months and 15–18 months",
+  prevents: "Measles and Rubella",
+  sideEffects: "Mild fever, rash, soreness at injection site"
+},
+{
+  name: "JE",
+  subtitle: "Japanese Encephalitis Vaccine",
+ organImage: "	https://media.sciencephoto.com/f0/18/13/54/f0181354-800px-wm.jpg",
+  doses: "2",
+  age: "9–12 months and 16–24 months (in endemic areas)",
+  prevents: "Japanese Encephalitis (brain inflammation)",
+  sideEffects: "Fever, redness at injection site, headache"
+},
+{
+  name: "Td",
+  subtitle: "Tetanus and Diphtheria Vaccine",
+  organImage: "	https://www.shutterstock.com/image-illustration/backlit-human-putting-his-hand-600nw-2558213099.jpg",
+  doses: "2 during pregnancy",
+  age: "For adolescents and pregnant women",
+  prevents: "Tetanus and Diphtheria",
+  sideEffects: "Pain/swelling at injection site, fever"
+},
+
+{
+  name: "HPV",
+  subtitle: "Human Papillomavirus Vaccine",
+  organImage: "https://www.nfid.org/wp-content/uploads/2023/03/HPV-v1.jpeg",
+  doses: "2–3 (based on age)",
+  age: "Girls and women aged 9–26 years",
+  prevents: "Cervical cancer (HPV-related)",
+  sideEffects: "Dizziness, nausea, fever, soreness at injection site"
+},
+{
+  name: "MMR",
+  subtitle: "Measles, Mumps, Rubella Vaccine",
+  organImage: "https://media.sciencephoto.com/c0/50/62/61/c0506261-225px.jpg",
+  doses: "2",
+  age: "9–12 months and 15–18 months",
+  prevents: "Measles, Mumps, Rubella",
+  sideEffects: "Fever, mild rash, temporary joint pain"
+},
+{
+  name: "Typhoid (TCV)",
+  subtitle: "Typhoid Conjugate Vaccine",
+  organImage: "	https://www.lstmed.ac.uk/sites/default/files/content/news-articles/images/GettyImages-874165142%20typhoid.jpg",
+  doses: "1",
+  age: "9 months and older",
+  prevents: "Typhoid fever",
+  sideEffects: "Pain at injection site, fever, headache"
+},
+
+{
+  name: "Influenza",
+  subtitle: "Seasonal Influenza Vaccine",
+  organImage: "https://rare-gallery.com/thumbs/536601-heart-background.jpg",
+  doses: "1 (annually)",
+  age: "6 months and above (yearly)",
+  prevents: "Seasonal flu",
+  sideEffects: "Low fever, headache, body aches"
+},
+{
+  name: "Varicella",
+  subtitle: "Varicella (Chickenpox) Vaccine",
+  organImage: "	https://www.innerbalancehealthclinics.com.au/thumbnaillarge/2112_osteoBlogimage-nervoussyste.jpg",
+  doses: "2",
+  age: "12–15 months and 4–6 years",
+  prevents: "Chickenpox (skin infection)",
+  sideEffects: "Mild rash, soreness, fever"
+},
+{
+  name: "Meningococcal",
+  subtitle: "Meningococcal Vaccine",
+  organImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDL42lWkmRtP9VortLPC1_1l1BLWLgTsY_sQ&s",
+  doses: "1–2 (depending on age and risk)",
+  age: "2 years and older, or high-risk infants",
+  prevents: "Meningitis (brain & spinal cord)",
+  sideEffects: "Redness, headache, tiredness"
+},
+{
+  name: "Cholera",
+  subtitle: "Cholera Vaccine",
+  organImage: "https://medlineplus.gov/images/MalabsorptionSyndromesandSmallIntestineDiseases_share.jpg",
+  doses: "2 oral doses",
+  age: "2 years and older (during outbreaks or travel)",
+  prevents: "Cholera (intestinal infection)",
+  sideEffects: "Mild digestive symptoms"
+},
+{
+  name: "Rabies",
+  subtitle: "Rabies Vaccine",
+  organImage: "	https://media.sciencephoto.com/f0/33/57/47/f0335747-800px-wm.jpg",
+  doses: "4–5 (post-exposure), 2–3 (pre-exposure)",
+  age: "All ages (post-bite or high risk)",
+  prevents: "Rabies (nervous system)",
+  sideEffects: "Headache, nausea, soreness"
+},
+
+{
+  name: "Zoster",
+  subtitle: "Zoster (Shingles) Vaccine",
+  organImage: "https://t4.ftcdn.net/jpg/10/55/57/61/360_F_1055576131_rjgjaqiwgJBnwoVIVoPHQOpEMC31xiBU.jpg",
+  doses: "2 (2–6 months apart)",
+  age: "50 years and older",
+  prevents: "Shingles (nerve & skin infection)",
+  sideEffects: "Pain, redness, headache"
+},
+
+{
+  name: "PPSV23",
+  subtitle: "Pneumococcal Polysaccharide Vaccine",
+  organImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfQtNjl9wzHMC55fDPaKbU8_Q4GgC1hnso_g&s",
+  doses: "1 (or 2 based on risk)",
+  age: "Adults over 65 or at-risk under 65",
+  prevents: "Pneumococcal diseases (pneumonia, meningitis)",
+  sideEffects: "Redness, muscle ache"
+}
+
+    ];
+
+    const grid = document.getElementById('vaccineGrid');
+
+    vaccines.forEach(v => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${v.organImage}" alt="${v.name} organ image" />
+        <div class="card-body">
+          <h2>${v.name}</h2>
+          <small>(${v.subtitle})</small>
+          <div class="info">
+            <span><strong>🩹 Doses:</strong> ${v.doses}</span>
+            <span><strong>👶 Age:</strong> ${v.age}</span>
+            <span><strong>🛡️ Prevents:</strong> ${v.prevents}</span>
+            <span><strong>⚠️ Side Effects:</strong> ${v.sideEffects}</span>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

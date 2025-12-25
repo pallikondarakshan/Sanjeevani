@@ -1,0 +1,1080 @@
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sanjeevani Health Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .bg-primary { background-color: #3B82F6; }
+        .text-primary { color: #3B82F6; }
+        .border-primary { border-color: #3B82F6; }
+        .bg-secondary { background-color: #EFF6FF; }
+        .gradient-bg {
+            background: linear-gradient(90deg, #3B82F6, #60A5FA);
+        }
+        .testimonial-card {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+    </style>
+  <style>
+    .footer-bg { 
+        background-color: #1F2937; /* gray-800 in Tailwind */
+    }
+    .footer-text-white {
+        color: #FFFFFF;
+    }
+    .footer-text-primary:hover {
+        color: #3B82F6; /* Your primary blue color */
+    }
+    .footer-border-t {
+        border-top-width: 1px;
+    }
+    .footer-border-gray-700 {
+        border-color: #374151; /* gray-700 in Tailwind */
+    }
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a0ca3;
+      --secondary: #4cc9f0;
+      --accent: #f72585;
+      --accent-light: #f8a8cb;
+      --text-dark: #2b2d42;
+      --text-light: #f8f9fa;
+      --bg-light: #f8f9fa;
+      --bg-dark: #212529;
+      --bg-accent: #f0f9ff;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-strong: 0 15px 35px rgba(0, 0, 0, 0.12);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header Styles */
+    header {
+      position: sticky;    
+      top: 0;  
+      z-index: 100;
+       background: linear-gradient(to right, #040676,rgba(58, 12, 163, 0.9));
+      box-shadow: var(--shadow);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo img {
+      height: 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .brand-text h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    .brand-text p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 300;
+    }
+
+    /* Navigation */
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .navbar {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-item {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(67, 97, 238, 0.2), rgba(58, 12, 163, 0.6)), 
+                  url('/images/logoa.jpg');
+      background-size: fit;
+      background-position: center;
+      color: var(--text-light);
+      padding: 7rem 0;
+      margin-top: -1px;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: white;
+      box-shadow: 0 4px 15px rgba(247, 37, 133, 0.3);
+    }
+
+    .btn-primary:hover {
+      background-color: #e91e63;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(247, 37, 133, 0.4);
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+    }
+    
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Services Section */
+    .services {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-img {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 1.8rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-body h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-body p {
+      color: #555;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .card-body .btn {
+      align-self: flex-start;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+    
+    /* Value Proposition Section */
+    .value-proposition {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .value-item {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .value-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-strong);
+    }
+    
+    .value-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 50%;
+      font-size: 1.8rem;
+    }
+    
+    .value-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--text-dark);
+    }
+    
+    .value-item p {
+      color: #555;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+    
+    /* Card Badge */
+    .card-img {
+      position: relative;
+    }
+    
+    .card-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 1;
+      box-shadow: 0 3px 8px rgba(247, 37, 133, 0.3);
+    }
+    
+    /* Feature List */
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+    
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    
+    .feature-list i {
+      color: var(--primary);
+      font-size: 0.8rem;
+    }
+    
+    /* Services CTA */
+    .services-cta {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 2.5rem;
+      background: linear-gradient(135deg, rgba(67, 97, 238, 0.08), rgba(76, 201, 240, 0.12));
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    
+    .services-cta h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+    
+    .services-cta p {
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      color: #555;
+    }
+
+    
+    /* About Section */
+    .about {
+      padding: 5rem 0;
+      background-color: white;
+    }
+    
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #555;
+    }
+    
+    .about-text .btn {
+      align-self: flex-start;
+      margin-top: 1rem;
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    
+    /* How It Works Section */
+    .how-it-works {
+      padding: 5rem 0;
+      background-color: var(--bg-accent);
+    }
+    
+    .steps-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .step {
+      flex: 1;
+      text-align: center;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .step:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-strong);
+    }
+    
+    .step::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -1.5rem;
+      width: 1rem;
+      height: 1rem;
+      border-top: 2px solid var(--primary);
+      border-right: 2px solid var(--primary);
+      transform: translateY(-50%) rotate(45deg);
+    }
+    
+    .step:last-child::after {
+      display: none;
+    }
+    
+    .step-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-radius: 50%;
+      font-size: 2rem;
+    }
+    
+    .step h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+    
+    .step p {
+      color: #555;
+      line-height: o;
+    }
+    
+    .author-info h4 {
+      font-size: 1.1rem;
+      margin: 0;
+      color: var(--text-dark);
+    }
+    
+    .author-info p {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0;
+    }
+    
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      background-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Media Queries */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 1rem 0;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary-dark);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .navbar.active {
+        max-height: 300px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-item {
+        width: 100%;
+        padding: 1rem 2rem;
+        border-radius: 0;
+      }
+
+      .hero {
+        padding: 5rem 0;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero h2 {
+        font-size: 1.2rem;
+      }
+
+      .services, .partners {
+        padding: 3rem 0;
+      }
+
+      .section-header h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .brand-text h1 {
+        font-size: 1.4rem;
+      }
+
+      .brand-text p {
+        font-size: 0.8rem;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .btn {
+        padding: 0.7rem 1.5rem;
+      }
+
+      .section-header h2 {
+        font-size: 1.6rem;
+      }
+
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-container">
+        <div class="logo-container">
+          <div class="logo">
+            <img src="/images/logo3.png" alt="Sanjeevani Logo">
+          </div>
+          <div class="brand-text">
+            <h1>Sanjeevani</h1>
+            <p>Your Digital Health Guide</p>
+          </div>
+        </div>
+        
+        <button class="nav-toggle" id="navToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav class="navbar" id="navbar">
+          <a href="#home" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="hospitals.html" class="nav-item">
+            <i class="fas fa-hospital"></i>
+            <span>Hospitals</span>
+          </a>
+          <a href="/templates/yoga.html" class="nav-item">
+            <i class="fas fa-spa"></i>
+            <span>Yoga</span>
+          </a>
+          <a href="vaccine.html" class="nav-item">
+            <i class="fas fa-syringe"></i>
+            <span>Vaccine</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        
+        <br><br><br><br><br><br><br><br><br>
+        <div class="hero-cta">
+          <a href="#services" class="btn btn-primary">Explore Services</a>
+          <a href="#about" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Health Services</h2>
+        <p>Advanced diagnostic tools to help you stay informed about your health status with detailed analysis and personalized insights.</p>
+      </div>
+      
+      <div class="value-proposition">
+        <div class="value-item">
+          <div class="value-icon">
+            <i class="fas fa-shield-virus"></i>
+          </div>
+          <h3>Preventive Focus</h3>
+          <p>Detect potential health issues before they become serious problems</p>
+        </div>
+        
+        <div class="value-item">
+          <div class="value-icon">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <h3>Comprehensive Analysis</h3>
+          <p>In-depth assessment of your health metrics with easy-to-understand results</p>
+        </div>
+        
+        <div class="value-item">
+          <div class="value-icon">
+            <i class="fas fa-user-md"></i>
+          </div>
+          <h3>Nearby Healthcare</h3>
+          <p>Find doctors and hospitals near you specialized in treating your condition.</p>
+        </div>
+        
+        <div class="value-item">
+          <div class="value-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3>Privacy Assured</h3>
+          <p>Your health data is encrypted and protected with enterprise-grade security</p>
+        </div>
+      </div>
+      <div class="container">
+    
+        <div class="report-grid">
+
+      <div class="card-grid">
+           <a href="/liver" class="card">
+                <img src="https://www.oxfordgutandliver.co.uk/media/hy5dubte/abnormal-liver-blood-tests.jpg?anchor=center&mode=crop&width=960&height=604&rnd=132410522278600000" alt="Liver Disease Detector">
+                <div class="card-body">
+                    <center><h2>  Liver Disease Detector</h2>
+                    <p>Detect potential liver issues with our advanced analysis tools.</p></center>
+                </div>
+            </a>
+            <a href="/cbc" class="card">
+                <img src="https://ayushmandiagnostics.com/blog/wp-content/uploads/2023/11/CBC-Blood-test-1024x768.jpg" alt="CBC Analyzer">
+                <div class="card-body">
+                    <center><h2>CBC Analyzer</h2>
+                    <p>Get a comprehensive analysis of your Complete Blood Count.</p></center>
+                </div>
+            </a>
+            <a href="/thyroid" class="card">
+                <img src="https://www.annapharmacy.com/wp-content/uploads/2022/06/full-thyroid-blood-test.jpg" alt="Thyroid Panel">
+                <div class="card-body">
+                <center><h2>Thyroid Checker</h2>
+                    <p>Analyze your thyroid function with detailed reports.</p></center>
+                </div>
+            </a>
+        </div>
+      </div>
+        </a>
+      </div>
+      </div>
+  </section>
+      <!-- Supported Reports & Diseases -->
+    <section id="supported-reports" class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Supported Reports & Diseases</h2>
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-file-medical text-primary mr-2"></i> Supported Reports
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-primary mr-2"></i>
+                                <span>Thyroid Profile (T3, T4, TSH)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-primary mr-2"></i>
+                                <span>Liver Function Test (LFT)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-primary mr-2"></i>
+                                <span>Complete Blood Count (CBC)</span>
+                            </li>
+                        </ul>
+                        <br>
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-file-alt text-primary mr-2"></i> Supported Formats
+                        </h3>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                <span>PDF Documents</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-file-image text-blue-500 mr-2"></i>
+                                <span>Images (JPG, PNG)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-file-word text-blue-600 mr-2"></i>
+                                <span>Word Documents (DOCX)</span>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div>
+
+                        
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-heartbeat text-primary mr-2"></i> Detectable Conditions
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-primary mr-2"></i>
+                                <span>Thyroid Disorders</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-primary mr-2"></i>
+                                <span>Anemia</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-primary mr-2"></i>
+                                <span>Liver Conditions</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-primary mr-2"></i>
+                                <span>Infection</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-primary mr-2"></i>
+                                <span>Thrombocytosis</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+  <!-- About Us Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2>About Sanjeevani</h2>
+        <p>Empowering individuals to take control of their health through innovative digital solutions</p>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-text">
+          <p>Sanjeevani is a modern health platform designed to bridge the gap between complex medical data and actionable health insights. Our mission is to make preventive healthcare accessible and understandable for everyone.</p>
+          <p>Using advanced algorithms and medical expertise, we analyze your health reports to provide personalized recommendations and early detection of potential health issues.</p>
+          <!-- <a href="about.html" class="btn btn-primary">Read Our Story</a> -->
+        </div>
+        <div class="about-image">
+          <img src="/images/about.jpeg" alt="About Sanjeevani">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- How It Works Section -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+        <p>Get personalized health insights in three simple ways</p>
+      </div>
+      
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-icon">
+            <i class="fas fa-file-upload"></i>
+          </div>
+          <h3>Upload Reports</h3>
+          <p>Upload your medical reports from diagnostic centers through our secure portal</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Smart Analysis</h3>
+          <p>Our ML algorithms analyze your reports and compare with medical datasets</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3>Get Insights</h3>
+          <p>Receive predictive results along with the confidence level</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+   <footer class="footer-bg footer-text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Column 1 -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Sanjeevani</h3>
+                <p class="mb-4">Your AI and ML powered health guide at your fingertips</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="footer-text-white hover:footer-text-primary">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="footer-text-white hover:footer-text-primary">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="footer-text-white hover:footer-text-primary">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="footer-text-white hover:footer-text-primary">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Column 2 -->
+            <div>
+                <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:footer-text-primary">Home</a></li>
+                    <li><a href="#services" class="hover:footer-text-primary">Services</a></li>
+                    <li><a href="#how-it-works" class="hover:footer-text-primary">How It Works</a></li>
+                    <li><a href="#about" class="hover:footer-text-primary">About</a></li>
+                    <li><a href="#contact" class="hover:footer-text-primary">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Column 3 -->
+            <div>
+                <h3 class="text-lg font-bold mb-4">Health Resources</h3>
+                <ul class="space-y-2">
+                    <li><a href="https://www.who.int/" target="_blank" class="hover:footer-text-primary">World Health Organization</a></li>
+                    <li><a href="https://www.mohfw.gov.in/" target="_blank" class="hover:footer-text-primary">Ministry of Health & Family Welfare</a></li>
+                    <li><a href="https://www.aiims.edu/" target="_blank" class="hover:footer-text-primary">AIIMS</a></li>
+                    <li><a href="https://www.icmr.gov.in/" class="hover:footer-text-primary">ICMR</a></li>
+                    <li><a href="https://health.telangana.gov.in/" class="hover:footer-text-primary">TS Health Department</a></li>
+                    
+                </ul>
+            </div>
+            <!-- Column 4 -->
+            <div>
+                <h3 class="text-lg font-bold mb-4">Emergency Helplines</h3>
+                <ul class="space-y-2">
+                    <li><strong>Ambulance:</strong> 108</a></li>
+                    <li><strong>National Emergency:</strong> 112</a></li>
+                    <li><strong>Air Ambulance:</strong> 9540161344</a></li>
+                    <li><strong>Senior Citizen Helpline:</strong> 14567</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-border-t footer-border-gray-700 mt-8 pt-8 text-center text-sm">
+            <p>© 2025 Sanjeevani Health. All rights reserved.</p>
+            <p class="mt-2">Disclaimer: Sanjeevani is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+        </div>
+    </div>
+</footer>
+  <script>
+    // Mobile Navigation Toggle
+    const navToggle = document.getElementById('navToggle');
+    const navbar = document.getElementById('navbar');
+    
+    navToggle.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+    });
+    
+    // Close mobile navigation when clicking a link
+    const navLinks = document.querySelectorAll('.nav-item');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navbar.classList.remove('active');
+      });
+    });
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Add animation on scroll
+    window.addEventListener('scroll', () => {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const cardPosition = card.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if(cardPosition < screenPosition) {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+  
+    
+    // Chatbase integration
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized")
+    {window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}
+    window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q")
+    {return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");
+    script.src="https://www.chatbase.co/embed.min.js";script.id="ljxi622T9Oq7NbqKRD3nm";script.domain="www.chatbase.co";
+    document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+  </script>
+  
+
+<!-- Back to Top Button -->
+<a id="backToTop"
+   href="#top"
+   class="hidden fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white p-3 rounded-full shadow-md hover:bg-blue-700 z-50 transition-opacity duration-300"
+   title="Back to top">
+   ↑
+</a>
+<script>
+    const backToTopBtn = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+
+        if (scrollTop + windowHeight >= docHeight - 20) {
+            backToTopBtn.classList.remove("hidden");
+        } else {
+            backToTopBtn.classList.add("hidden");
+        }
+    });
+</script>
+
+
+</body>
+</html>
