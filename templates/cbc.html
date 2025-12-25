@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CBC Diagnostic Tool</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-red-100 to-white min-h-screen p-4">
+  <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6">
+    <h1 class="text-3xl font-bold text-center text-red-700 mb-4">Complete Blood Count (CBC) Diagnostic</h1>
+
+    {% if error %}
+      <div class="text-center mb-4 text-red-600 font-semibold">
+        {{ error }}
+      </div>
+    {% endif %}
+
+    <form action="{{ url_for('cbc_bp.index') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+      <!--pdfs uploading-->
+      <div>
+        <label class="block font-medium mb-1 text-gray-700">Upload Report (PDF, DOCX, JPG, PNG)</label>
+        <input type="file" name="file_input" accept=".pdf,.docx,.jpg,.jpeg,.png" class="block w-full border p-2 rounded">
+      </div>
+
+      <p class="text-center text-gray-500 font-semibold mt-6">OR enter parameters manually below:</p>
+
+      <!--manual entry section-->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        {% set fields = [
+          ("WBC", "White Blood Cells WBC (cells/cumm)", "e.g. 6500"),
+          ("RBC", "Red Blood Cells RBC (million/cumm)", "e.g. 4.5"),
+          ("HGB", "Hemoglobin (g/dL)", "e.g. 13.5"),
+          ("MCV", "Mean Corpuscular Volume MCV (fL)", "e.g. 85"),
+          ("MCH", "Mean Corpuscular Hemoglobin MCH (pg)", "e.g. 28"),
+          ("PLT", "Platelets (cells/cumm)", "e.g. 250000")
+        ] %}
+        {% for field, label, placeholder in fields %}
+          <div>
+            <label for="{{ field }}" class="block text-gray-700 font-medium">{{ label }}</label>
+            <input 
+              type="text" 
+              name="{{ field }}" 
+              id="{{ field }}" 
+              placeholder="{{ placeholder }}" 
+              value="{{ cbc_data[field] if cbc_data else '' }}" 
+              class="w-full border p-2 rounded" 
+            />
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="md:col-span-2 flex flex-col items-center mt-4">
+        <label for="MCHC" class="text-gray-700 font-medium text-center">
+          Mean Corpuscular Hemoglobin Concentration - MCHC (g/dL)
+        </label>
+        <input 
+          type="text" 
+          name="MCHC" 
+          id="MCHC" 
+          placeholder="e.g. 34" 
+          value="{{ cbc_data['MCHC'] if cbc_data else '' }}" 
+          class="border p-2 rounded mt-1 text-center"
+          style="width: 38ch;" 
+        />
+      </div>
+
+      <div class="text-center mt-6">
+        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition">
+          Submit
+        </button>
+      </div>
+    </form>
+
+    {% if result %}
+      <div class="text-center mt-8 text-xl p-4 rounded-xl {{ 'bg-red-100 text-red-800' if '⚠️' in result else 'bg-green-100 text-green-800' }}">
+        {{ result }}
+      </div>
+    {% endif %}
+
+    
+    <footer class="mt-10 text-center text-gray-500 text-sm">
+      <p class="italic">Your privacy matters. We do not store or misuse your health data.</p>
+    </footer>
+  </div>
+</body>
+</html>

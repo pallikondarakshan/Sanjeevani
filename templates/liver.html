@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Liver Disease Diagnostic Tool</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-green-100 to-white min-h-screen p-4">
+  <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6">
+    <h1 class="text-3xl font-bold text-center text-green-700 mb-4">Liver Health Diagnostic</h1>
+
+    {% if error %}
+      <div class="text-center mb-4 text-red-600 font-semibold">
+        {{ error }}
+      </div>
+    {% endif %}
+
+    <form action="{{ url_for('liver_bp.index') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+      <div>
+        <label class="block font-medium mb-1 text-gray-700">Upload Report (PDF, DOCX, JPG, PNG)</label>
+        <input type="file" name="file_input" accept=".pdf,.docx,.jpg,.jpeg,.png" class="block w-full border p-2 rounded">
+      </div>
+
+      <p class="text-center text-gray-500 font-semibold mt-6">OR enter parameters manually below:</p>
+      <!-- manual entering of parameters-->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        {% set fields = [
+            ("Age", "Age (years)", "e.g. 28"),
+            ("Gender", "Gender (1 = Male, 0 = Female)", "e.g. 1"),
+            ("Total_Bilirubin", "Total Bilirubin (mg/dL)", "e.g. 1.2"),
+            ("Direct_Bilirubin", "Direct Bilirubin (mg/dL)", "e.g. 0.3"),
+            ("ALP", "Alkaline Phosphotase - ALP (IU/L)", "e.g. 120"),
+            ("ALT", "Alanine Aminotransferase - ALT/SGPT (IU/L)", "e.g. 35"),
+            ("AST", "Aspartate Aminotransferase - AST/SGOT (IU/L)", "e.g. 40"),
+            ("Total_Proteins", "Total Proteins (g/dL)", "e.g. 7.0"),
+            ("Albumin", "Albumin (g/dL)", "e.g. 3.8"),
+            ("A_G_Ratio", "A/G Ratio (Albumin/Globulin)", "e.g. 1.1")
+          ] %}
+          {% for field, label, placeholder in fields %}
+            <div>
+              <label for="{{ field }}" class="block text-gray-700 font-medium">{{ label }}</label>
+              <input 
+                type="text" 
+                name="{{ field }}" 
+                id="{{ field }}" 
+                placeholder="{{ placeholder }}" 
+                value="{{ liver_data[field] if liver_data else '' }}" 
+                class="w-full border p-2 rounded" 
+              />
+            </div>
+          {% endfor %}
+      </div>
+
+      <div class="text-center mt-6">
+        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+          Submit
+        </button>
+      </div>
+    </form>
+
+    {% if result %}
+      <div class="text-center mt-8 text-xl p-4 rounded-xl {{ 'bg-red-100 text-red-800' if '⚠️' in result else 'bg-green-100 text-green-800' }}">
+        {{ result }}
+        {% if confidence %}
+          <p class="mt-2 text-base font-medium">Confidence: {{ confidence }}%</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <footer class="mt-10 text-center text-gray-500 text-sm">
+      <p class="italic">Your privacy matters. We do not store or misuse your health data.</p>
+    </footer>
+  </div>
+</body>
+</html>
